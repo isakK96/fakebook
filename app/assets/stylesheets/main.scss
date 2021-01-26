@@ -1,2 +1,13 @@
 @import '_layout';
 @import 'bulma/bulma';
+@import 'font-awesome';
+
+/* sidebar */
+.menu {
+  width: fit-content;
+  background-color: aliceblue;
+}
+
+.menu a {
+  font-size: larger;
+}

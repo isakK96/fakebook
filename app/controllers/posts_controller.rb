@@ -14,19 +14,19 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(posts_params)
     @post.save
 
-    flash.notice = "post '#{@post.title}' Created!"
-    redirect_to post_path(@post)
+    #flash.notice = "post '#{@post.title}' Created!"
+    #redirect_to post_path(@post)
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
 
-    flash.notice = "post '#{@post.title}' Deleted!"
-    redirect_to posts_path
+    #flash.notice = "post '#{@post.title}' Deleted!"
+    #redirect_to posts_path
   end
 
   def edit
@@ -37,11 +37,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update(post_params)
 
-    flash.notice = "post '#{@post.title}' Updated!"
+    #flash.notice = "post '#{@post.title}' Updated!"
     redirect_to post_path(@post)
   end
 
   def posts_params
-    params.require(:post).permit(:body)
+    params.permit(:body)
   end
 end

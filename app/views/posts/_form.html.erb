@@ -1,0 +1,10 @@
+<%= form_with(model: @post, url: posts_path) do |f| %>
+  <div class="field has-addons">
+    <div class="control">
+      <%= f.text_area :body, id: 'post-input', class: 'input' %>
+    </div>
+    <div class="control">
+      <%= f.submit 'Submit Post', class: 'button is-primary' %>
+    </div>
+  </div>
+<% end %>
