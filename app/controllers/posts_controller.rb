@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     @post.update(post_params)
 
     #flash.notice = "post '#{@post.title}' Updated!"
-    redirect_to post_path(@post)
+    #redirect_to post_path(@post)
   end
 
   def posts_params
