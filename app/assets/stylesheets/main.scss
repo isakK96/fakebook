@@ -3,9 +3,12 @@
 @import 'font-awesome';
 
 /* sidebar */
+.aside {
+  height: 100%;
+}
+
 .menu {
   width: fit-content;
-  background-color: aliceblue;
 }
 
 .menu a {

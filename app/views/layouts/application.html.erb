@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -39,7 +41,7 @@
 
     <%# side navbar %>
     <% if current_user %>
-      <aside class="menu">
+      <aside class="menu is-fullheight">
         <ul class="menu-list">
           <li>
             <%= link_to(root_path) do %>
@@ -64,8 +66,14 @@
         </ul>
       </aside>
     <% end %>
-    <%= render 'posts/form'%>
 
     <%= yield %>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Fakebook</strong> by <a href="https://github.com/isakK96">isakk96</a>.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>
