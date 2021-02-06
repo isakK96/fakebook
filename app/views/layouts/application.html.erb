@@ -25,7 +25,7 @@
         <div class="navbar-item">
           <div class="buttons">
             <% if current_user %>
-              <%= link_to "Profile", current_user, class: 'button is-link' %>
+              <%= link_to current_user.username, current_user, class: 'button is-link' %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'button is-link' %>
             <% else %>
               <%= link_to "Login", new_user_session_path, class: 'button is-link' %>
@@ -36,35 +36,38 @@
     </nav>
 
     <%# notices %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render "layouts/flash" %>
 
     <%# side navbar %>
     <% if current_user %>
-      <aside class="menu is-fullheight">
-        <ul class="menu-list">
-          <li>
-            <%= link_to(root_path) do %>
-              <%= fa_icon "home", text: "Home", class: "icon" %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to(user_path(current_user)) do %>
-              <%= fa_icon "user", text: "Profile", class: "icon" %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to(root_path) do %>
-              <%= fa_icon "users", text: "Friends", class: "icon" %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to(root_path) do %>
-              <%= fa_icon "cog", text: "Settings", class: "icon" %>
-            <% end %>
-          </li>
-        </ul>
-      </aside>
+      <div class="columns is-fullheight">
+        <div class="column is-2">
+          <aside class="menu">
+            <ul class="menu-list">
+              <li>
+                <%= link_to(root_path) do %>
+                  <%= fa_icon "home", text: "Home", class: "icon" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to(user_path(current_user)) do %>
+                  <%= fa_icon "user", text: "Profile", class: "icon" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to(root_path) do %>
+                  <%= fa_icon "users", text: "Friends", class: "icon" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to(root_path) do %>
+                  <%= fa_icon "cog", text: "Settings", class: "icon" %>
+                <% end %>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
     <% end %>
 
     <%= yield %>
