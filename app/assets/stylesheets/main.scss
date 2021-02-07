@@ -2,9 +2,20 @@
 @import 'bulma/bulma';
 @import 'font-awesome';
 
+body {
+  min-height: 100vh;
+  background-color: #FAFAFA;
+}
+
+/* middle column */
+.column.is-8 {
+  box-shadow:  15px 15px 30px #d5d5d5,
+  -15px -15px 30px #ebebeb;
+}
+
 /* sidebar */
-.aside {
-  height: 100%;
+aside.menu {
+  width: 100%;
 }
 
 .menu {
@@ -13,4 +24,10 @@
 
 .menu a {
   font-size: larger;
+}
+
+/* footer */
+.footer {
+  bottom: 0;
+  width: 100%;
 }
