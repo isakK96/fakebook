@@ -8,6 +8,8 @@ gem 'devise'
 # bulma for styling
 gem "bulma-rails", "~> 0.9.1"
 
+gem "simple_form", "~> 5.1.0"
+
 # font awesome for icons
 gem "font-awesome-rails"
 

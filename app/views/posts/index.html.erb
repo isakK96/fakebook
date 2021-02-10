@@ -1,6 +1,84 @@
 <div class="form-container">
   <%= render 'posts/form'%>
 </div>
-<div class="feed-container">
-  <%= render "posts/feed" %>
+
+<%# posts feed %>
+<div class="posts-container">
+  <% @posts.each do |post| %>
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          </figure>
+        </div>
+
+        <%# post content %>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>
+                <%= link_to post.user.username, user_path(post.user.username) %>
+              </strong>
+              <small>
+                <%= time_ago_in_words(post.created_at) %> ago
+              </small>
+              <br>
+              <%= post.body %>
+            </p>
+          </div>
+
+          <%= render "post-icons" %>
+
+          <%# comments %>
+          <% if post.comments.any? %>
+            <div class="is-size-7">
+              <%= post.comments.count %> 
+              <%= post.comments.count == 1 ? "Comment" : "Comments" %>
+            </div>
+
+            <%# comment content %>
+            <% post.comments.each do |comment| %>
+              <div class="box">
+                <article class="media">
+                  <div class="media-left">
+                    <figure class="image is-32x32">
+                      <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                    </figure>
+                  </div>
+
+                  <%# post content %>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <strong>
+                          <%= link_to comment.user.username, user_path(comment.user.username) %>
+                        </strong>
+                        <small>
+                          <%= time_ago_in_words(comment.created_at) %> ago
+                        </small>
+                        <br>
+                        <%= comment.body %>
+                      </p>
+                    </div>
+
+                    <%= render "post-icons" %>
+                  </div>
+                </article>
+              </div>
+            <% end %>
+          <% end %>
+          <%# comments form %>
+          <%= simple_form_for [post, post.comments.build] do |f| %>
+            <%= f.hidden_field :post_id, value: post.id %>
+            <%= f.text_field :body,
+              required: true,
+              placeholder: "Write a comment..." %>
+            <%# f.button :submit %>
+          <% end %>
+
+        </div>
+      </article>
+    </div>
+  <% end %>
 </div>

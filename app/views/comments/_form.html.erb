@@ -1,0 +1,7 @@
+<%= simple_form_for [post, post.comments.build] do |f| %>
+  <%= f.hidden_field :post_id, value: post.id %>
+  <%= f.text_field :body,
+    required: true,
+    placeholder: "Write a comment..." %>
+  <%= f.button :submit %>
+<% end %>

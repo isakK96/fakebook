@@ -14,7 +14,7 @@
                 <%= link_to post.user.username, user_path(post.user.username) %>
               </strong>
               <small>
-                <%= time_ago_in_words(post.created_at) %>
+                <%= time_ago_in_words(post.created_at) %> ago
               </small>
               <br>
               <%= post.body %>
@@ -39,6 +39,15 @@
               </a>
             </div>
           </nav>
+          <%# render "comments/form" %>
+          <%= simple_form_for [post, post.comments.build] do |f| %>
+            <%= f.hidden_field :post_id, value: post.id %>
+            <%= f.text_field :body,
+              required: true,
+              placeholder: "Write a comment..." %>
+            <%# f.button :submit %>
+          <% end %>
+
         </div>
       </article>
     </div>
