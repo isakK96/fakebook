@@ -28,16 +28,16 @@
             </p>
           </div>
 
-          <%= render "post-icons" %>
+          <%= render partial: "posts/post-icons", locals: { post: post } %>
 
-          <%# comments %>
+          <%# comments count %>
           <% if post.comments.any? %>
             <div class="is-size-7">
               <%= post.comments.count %> 
               <%= post.comments.count == 1 ? "Comment" : "Comments" %>
             </div>
 
-            <%# comment content %>
+            <%# comment loop %>
             <% post.comments.each do |comment| %>
               <div class="box">
                 <article class="media">
@@ -47,7 +47,7 @@
                     </figure>
                   </div>
 
-                  <%# post content %>
+                  <%# comment content %>
                   <div class="media-content">
                     <div class="content">
                       <p>
@@ -62,7 +62,6 @@
                       </p>
                     </div>
 
-                    <%= render "post-icons" %>
                   </div>
                 </article>
               </div>

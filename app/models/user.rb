@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-
+  has_many :likes, dependent: :destroy
+  
   # setting up the required associations between User & Friendship models for friend requests
   has_many :friend_sent,  class_name: 'Friendship',
                           foreign_key: 'sender_id',

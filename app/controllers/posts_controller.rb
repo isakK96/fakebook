@@ -17,6 +17,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(posts_params)
     if @post.save
       flash.notice = "Post created!"
+      redirect_back(fallback_location: root_path)
     end
     #redirect_to post_path(@post)
   end

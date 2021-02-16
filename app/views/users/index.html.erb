@@ -1,33 +1,36 @@
 <h1 class="title">Friends</h1>
-
-<% current_user.friends.each do |user| %>
-  <div class="box">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-64x64">
-          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-        </figure>
-      </div>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <strong>
-              <%= link_to user.username, user_path(user) %>
-            </strong>
-            <% if current_user.friend_request.exists?(sender_id: user.id, status: false) %>
-              <%= link_to "Accept friend request", user_friendship_path(user, current_user.friend_request.last), method: :patch %>
-            <% else %>
-              <%= link_to "Add as friend", user_friendships_path(user), method: :post %>
-            <% end %>
-          </p>
+<% if current_user.friends.any? %>
+  <% current_user.friends.each do |user| %>
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          </figure>
         </div>
-      </div>
-    </article>
-  </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>
+                <%= link_to user.username, user_path(user) %>
+              </strong>
+              <% if current_user.friend_request.exists?(sender_id: user.id, status: false) %>
+                <%= link_to "Accept friend request", user_friendship_path(user, current_user.friend_request.last), method: :patch %>
+              <% else %>
+                <%= link_to "Add as friend", user_friendships_path(user), method: :post %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  <% end %>
+<% else %>
+  <h1 class="title">You don't have any friends!</h1>
 <% end %>
 
 
-
+<h1 class="title">People you may know</h1>
 <% @users.each do |user| %>
   <div class="box">
     <article class="media">
@@ -43,6 +46,8 @@
         <div class="is-justify-content-right">
           <% if current_user.friend_request.exists?(sender_id: user.id, status: false) %>
             <%= link_to "Accept friend request", user_friendship_path(user, current_user.friend_request.last), method: :patch %>
+          <% elsif user.friend_request.exists?(sender_id: current_user.id, status: false) %>
+            <p class="is-size-7	is-italic">Friend request pending</p>
           <% else %>
             <%= link_to "Add as friend", user_friendships_path(user), method: :post %>
           <% end %>
