@@ -1,18 +1,14 @@
-<nav class="level is-mobile">
-  <div class="level-left">
-    <a class="level-item" aria-label="reply">
-      <span class="icon is-small">
-        <i class="fa fa-reply" aria-hidden="true"></i>
-      </span>
-    </a>
+<span class="level-item" aria-label="like">
+  <span class="icon is-medium">
+    <% if current_user.likes.where(post_id: post.id).exists? %>
+      <%= link_to(post_like_path(post, post.likes.find { |like| like.user_id == current_user.id}), method: :delete) do %>
+        <%= fa_icon "thumbs-up", class: "icon has-text-blue fas fa-lg" %>
+      <% end %>
+    <% else %>
+      <%= link_to(post_likes_path(post), method: :post) do %>
+        <%= fa_icon "thumbs-up", class: "icon has-text-grey fas fa-lg" %>
+      <% end %>
+    <% end %>
+  </span>
+</span>
 
-    <a class="level-item" aria-label="like">
-      <span class="icon is-small">
-        <%= link_to(post_likes_path(post), method: :post) do %>
-          <%= fa_icon "thumbs-up", class: "icon" %>
-        <% end %>
-
-      </span>
-    </a>
-  </div>
-</nav>

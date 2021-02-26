@@ -18,7 +18,7 @@
           <div class="content">
             <p>
               <strong>
-                <%= link_to post.user.username, user_path(post.user.username) %>
+                <%= link_to post.user.username, user_path(post.user_id) %>
               </strong>
               <small>
                 <%= time_ago_in_words(post.created_at) %> ago
@@ -28,8 +28,18 @@
             </p>
           </div>
 
-          <%= render partial: "posts/post-icons", locals: { post: post } %>
-
+          <%# likes and like count %>
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <%= render partial: "posts/post-icons", locals: { post: post } %>
+              <% if post.likes.any? %>
+                <div class="level-item">
+                  <%= post.likes.count %>
+                </div>
+              <% end%>
+              
+            </div>
+          </nav>
           <%# comments count %>
           <% if post.comments.any? %>
             <div class="is-size-7">
@@ -52,7 +62,7 @@
                     <div class="content">
                       <p>
                         <strong>
-                          <%= link_to comment.user.username, user_path(comment.user.username) %>
+                          <%= link_to comment.user.username, user_path(comment.user_id) %>
                         </strong>
                         <small>
                           <%= time_ago_in_words(comment.created_at) %> ago

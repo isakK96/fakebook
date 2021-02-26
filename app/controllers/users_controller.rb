@@ -1,11 +1,8 @@
 class UsersController < ApplicationController
-
   before_action :authenticate_user!
+  
   def index
-    @users = User.all.where.not(id: current_user.id)
-    @friends = current_user.friends
-    @pending_requests = current_user.pending_requests
-    @received_requests = current_user.received_requests
+    @users = User.where.not(id: current_user.id).where.not(id: current_user.friends.pluck(:id))
   end
 
   def show

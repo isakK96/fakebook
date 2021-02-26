@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
-    @posts = Post.all.order("created_at DESC")
+    @friends = current_user.friends.all
+    @posts = Post.where(user_id: current_user.friends).or(Post.where(user_id: current_user)).order(created_at: :desc)
     @comment = Comment.new
   end
 
