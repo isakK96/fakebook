@@ -50,29 +50,32 @@
   <h1 class="title">You don't have any friends!</h1>
 <% end %>
 
-<%# if @users.any? %>
-<h1 class="title">People you may know</h1>
-<% @users.each do |user| %>
-  <div class="box">
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-64x64">
-          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
-        </figure>
-      </div>
-      <div class="is-flex">
-        <div class="is-align-content-center is-size-3">
-          <%= link_to user.username, user_path(user) %>
+<% if @users.any? %>
+  <h1 class="title">People you may know</h1>
+  <% @users.each do |user| %>
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          </figure>
         </div>
-        <div class="is-justify-content-right">
-          <% if user.friend_request.exists?(sender_id: current_user.id, status: false) %>
-            <p class="is-size-7	is-italic">Friend request pending</p>
-          <% else %>
-            <%= link_to "Add as friend", user_friendships_path(user), method: :post %>
-          <% end %>
+        <div class="is-flex">
+          <div class="is-align-content-center is-size-3">
+            <%= link_to user.username, user_path(user) %>
+          </div>
+          <div class="is-justify-content-right">
+            <% if user.friend_request.exists?(sender_id: current_user.id, status: false) %>
+              <p class="is-size-7	is-italic">Friend request pending</p>
+            <% else %>
+              <%= link_to "Add as friend",
+                          user_friendships_path(user),
+                          method: :post,
+                          class: "button is-success ml-5 is-small" %>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </article>
-  </div>
+      </article>
+    </div>
+  <% end %>
 <% end %>
-<%# end %>
