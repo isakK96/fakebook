@@ -13,7 +13,9 @@
   </head>
   <%# top navbar %>
   <body>
-    <%= render "layouts/navbar" %>
+    <% if current_user %>
+      <%= render "layouts/navbar" %>
+    <% end %>
 
     <%# notices %>
     <%= render "layouts/flash" %>
