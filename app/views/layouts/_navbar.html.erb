@@ -1,18 +1,41 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <%= link_to "fakebook", root_path, class: 'title pt-2 pl-2' %>
+    <%= link_to "fakebook", root_path, class: 'is-size-2 navbar-item p-0 px-4' %>
+
+    <a role="button" id="burger" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarDropdown">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
-  <div class="navbar-start">
-  </div>
-  <div class="navbar-end">
-    <div class="navbar-item">
-      <div class="buttons">
-        <% if current_user %>
-          <%= link_to current_user.username, current_user, class: 'button' %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'button' %>
-        <% else %>
-          <%= link_to "Login", new_user_session_path, class: 'button' %>
+
+  <div id="navbarDropdown" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item">
+        <%= link_to(root_path) do %>
+          <div class="has-text-white">
+            <%= fa_icon "home", text: "Home", class: "icon" %>
+          </div>
         <% end %>
+      </div>
+      <div class="navbar-item">
+        <%= link_to(users_path) do %>
+          <div class="has-text-white">
+            <%= fa_icon "users", text: "Friends", class: "icon" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if current_user %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'button' %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path, class: 'button' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

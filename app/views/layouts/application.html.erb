@@ -10,7 +10,6 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%# <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" %>
   </head>
   <%# top navbar %>
   <body>
@@ -19,11 +18,9 @@
     <%# notices %>
     <%= render "layouts/flash" %>
 
-    <%# side navbar %>
-    <div class="columns is-fullheight">
+    <div class="columns is-fullheight mx-2">
       <div class="column is-2">
-        <%= render "layouts/sidebar"%>
-      </div>
+    </div>
 
       <%# main content %>
       <div class="column is-8">

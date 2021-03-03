@@ -12,7 +12,15 @@ body {
   background-color: #3b5998;
 }
 
+.navbar-menu {
+  background-color: #3b5998;
+}
+
 .navbar-brand a {
+  color: #f7f7f7;
+}
+
+.navbar-brand a:hover {
   color: #f7f7f7;
 }
 
@@ -20,24 +28,6 @@ body {
 .column.is-8 {
   box-shadow:  15px 15px 30px #d5d5d5,
   -15px -15px 30px #ebebeb;
-}
-
-/* sidebar */
-aside.menu {
-  width: 100%;
-}
-
-.menu {
-  width: fit-content;
-}
-
-.menu a {
-  font-size: larger;
-  margin-bottom: 1rem;
-  border-left-style: solid;
-  border-color: #3b5998;
-  border-left-width: 0.25rem;
-  border-radius: 0%;
 }
 
 /* footer */
